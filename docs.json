@@ -27,7 +27,7 @@
     "links": [
       {
         "label": "Site",
-        "href": "https://chainguard.dev"
+        "href": "https://chainguardai.dev"
       }
     ],
     "primary": {
@@ -42,17 +42,17 @@
         {
           "anchor": "Site",
           "icon": "link",
-          "href": "https://chainguard.dev"
+          "href": "https://chainguardai.dev"
         },
         {
           "anchor": "X",
           "icon": "x-twitter",
-          "href": "https://x.com/chainguard"
+          "href": "https://x.com/ChainGuardLabs"
         },
         {
           "anchor": "Telegram",
           "icon": "telegram",
-          "href": "https://t.me/chainguard"
+          "href": "https://t.me/chainguardai"
         }
       ]
     },
@@ -155,8 +155,8 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/chainguard",
-      "telegram": "https://t.me/chainguard"
+      "x": "https://x.com/ChainGuardLabs",
+      "telegram": "https://t.me/chainguardai"
     }
   }
 }

@@ -1,6 +1,6 @@
 ---
 title: "Scan Contract"
-api: "POST https://api.chainguard.dev/v1/scan/contract"
+api: "POST https://api.chainguardai.dev/v1/scan/contract"
 description: "Analyze a smart contract for security vulnerabilities and malicious code"
 icon: "file-code"
 ---
@@ -140,7 +140,7 @@ Perform deep analysis of smart contract bytecode to detect honeypots, rug pulls,
 <RequestExample>
 ```bash cURL
 curl --request POST \
-  --url https://api.chainguard.dev/v1/scan/contract \
+  --url https://api.chainguardai.dev/v1/scan/contract \
   --header 'Authorization: Bearer cg_live_xxxxxxxxxxxxxxxx' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -154,7 +154,7 @@ curl --request POST \
 ```
 
 ```javascript JavaScript
-const response = await fetch('https://api.chainguard.dev/v1/scan/contract', {
+const response = await fetch('https://api.chainguardai.dev/v1/scan/contract', {
   method: 'POST',
   headers: {
     'Authorization': `Bearer ${apiKey}`,
@@ -179,7 +179,7 @@ console.log('Is Honeypot:', data.data.isHoneypot);
 import requests
 
 response = requests.post(
-    'https://api.chainguard.dev/v1/scan/contract',
+    'https://api.chainguardai.dev/v1/scan/contract',
     headers={
         'Authorization': f'Bearer {api_key}',
         'Content-Type': 'application/json'

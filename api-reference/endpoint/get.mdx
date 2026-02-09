@@ -19,7 +19,7 @@ Use this endpoint to list monitors and filter them by type, status, or label.
 
 ```bash
 curl --request GET \
-  --url 'https://api.chainguard.dev/v1/monitors?limit=10&entityType=wallet&status=active' \
+  --url 'https://api.chainguardai.dev/v1/monitors?limit=10&entityType=wallet&status=active' \
   --header 'Authorization: Bearer cg_live_xxxxxxxxxxxxxxxx'
 ```
 
@@ -50,7 +50,7 @@ curl --request GET \
 ```typescript
 try {
   const response = await fetch(
-    'https://api.chainguard.dev/v1/monitors?limit=10&entityType=wallet&status=active',
+    'https://api.chainguardai.dev/v1/monitors?limit=10&entityType=wallet&status=active',
     {
       headers: { Authorization: `Bearer ${process.env.CHAINGUARD_API_KEY}` }
     }

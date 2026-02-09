@@ -48,7 +48,7 @@ console.log('Is Honeypot:', contractResult.isHoneypot);
 ```typescript
 interface ChainGuardConfig {
   apiKey: string;                 // Required
-  baseUrl?: string;               // Default: https://api.chainguard.dev
+  baseUrl?: string;               // Default: https://api.chainguardai.dev
   timeout?: number;               // Request timeout in ms (default: 30000)
   retries?: number;               // Retry attempts (default: 3)
   retryDelay?: number;            // Base retry delay in ms (default: 1000)
@@ -292,7 +292,7 @@ function SecurityBadge({ url }: { url: string }) {
 For browser environments, use the browser build:
 
 ```html
-<script src="https://cdn.chainguard.dev/sdk/v1/chainguard.min.js"></script>
+<script src="https://cdn.chainguardai.dev/sdk/v1/chainguard.min.js"></script>
 <script>
   const guard = new ChainGuard({ apiKey: 'cg_live_...' });
   guard.scan.url(window.location.href).then(result => {
