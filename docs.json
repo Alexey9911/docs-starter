@@ -3,13 +3,21 @@
   "theme": "mint",
   "name": "CryptoGuard",
   "colors": {
-    "primary": "#00D9A6",
-    "light": "#00F0B5",
-    "dark": "#00A67E"
+    "primary": "#22C978",
+    "light": "#6FE3FF",
+    "dark": "#0F8F66",
+    "background": {
+      "light": "#000000",
+      "dark": "#000000"
+    }
   },
   "favicon": "/favicon.svg",
   "appearance": {
     "default": "dark"
+  },
+  "modeToggle": {
+    "default": "dark",
+    "isHidden": true
   },
   "logo": {
     "light": "/logo/light.svg",
@@ -59,7 +67,6 @@
         "groups": [
           {
             "group": "Getting Started",
-            "icon": "rocket",
             "pages": [
               "index",
               "getting-started/quickstart",
@@ -68,7 +75,6 @@
           },
           {
             "group": "Features",
-            "icon": "shield",
             "pages": [
               "features/anti-phishing",
               "features/malware-detection",
@@ -79,7 +85,6 @@
           },
           {
             "group": "Architecture",
-            "icon": "microchip",
             "pages": [
               "architecture/overview",
               "architecture/ai-engine",
@@ -88,7 +93,6 @@
           },
           {
             "group": "Security",
-            "icon": "lock",
             "pages": [
               "security/threat-detection",
               "security/privacy"
@@ -96,11 +100,11 @@
           },
           {
             "group": "Resources",
-            "icon": "book",
             "pages": [
               "about/faq",
               "about/team",
-              "about/roadmap"
+              "about/roadmap",
+              "about/privacy-policy"
             ]
           }
         ]
@@ -110,7 +114,6 @@
         "groups": [
           {
             "group": "Overview",
-            "icon": "book-open",
             "pages": [
               "api-reference/introduction",
               "api-reference/authentication",
@@ -119,7 +122,6 @@
           },
           {
             "group": "Scan Endpoints",
-            "icon": "magnifying-glass",
             "pages": [
               "api-reference/scan/url",
               "api-reference/scan/contract",
@@ -129,7 +131,6 @@
           },
           {
             "group": "Risk Analysis",
-            "icon": "chart-line",
             "pages": [
               "api-reference/risk/score",
               "api-reference/risk/report"
@@ -137,7 +138,6 @@
           },
           {
             "group": "Webhooks",
-            "icon": "bell",
             "pages": [
               "api-reference/webhooks/events"
             ]
@@ -149,7 +149,6 @@
         "groups": [
           {
             "group": "SDK Reference",
-            "icon": "code",
             "pages": [
               "sdk/javascript",
               "sdk/python",
