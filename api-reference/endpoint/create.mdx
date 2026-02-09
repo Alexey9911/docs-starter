@@ -1,5 +1,94 @@
 ---
-title: 'Create Plant'
-openapi: 'POST /plants'
+title: 'Create monitor'
+description: 'Create a monitor for wallets, contracts, or URLs'
+openapi: 'POST /monitors'
 icon: 'plus'
 ---
+
+Use this endpoint to create a monitor that tracks risk changes and sends webhook events when thresholds are crossed.
+
+## When to use
+
+- You want proactive alerts for a high-value wallet.
+- You want to track a contract before users interact with it.
+- You want URL risk changes for a campaign or support domain.
+
+## Request body
+
+- `entity`: Wallet address, contract address, or URL.
+- `entityType`: `wallet`, `contract`, or `url`.
+- `threshold`: Risk score threshold from 0 to 100.
+- `notifyOn`: Event types you want to receive.
+- `labels`: Optional tags to help you group monitors.
+- `enabled`: Whether the monitor starts active. Defaults to `true`.
+
+## Example request
+
+```bash
+curl --request POST \
+  --url https://api.cryptoguard.ai/v1/monitors \
+  --header 'Authorization: Bearer cg_live_xxxxxxxxxxxxxxxx' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "entity": "0x742d35Cc6634C0532925a3b844Bc454c459dFE2C",
+    "entityType": "wallet",
+    "threshold": 70,
+    "notifyOn": ["entity.risk_changed", "entity.threat_detected"],
+    "labels": ["treasury", "high-value"],
+    "enabled": true
+  }'
+```
+
+## Example response
+
+```json
+{
+  "id": "mon_9u5c7w4n",
+  "status": "active",
+  "entity": "0x742d35Cc6634C0532925a3b844Bc454c459dFE2C",
+  "entityType": "wallet",
+  "threshold": 70,
+  "notifyOn": ["entity.risk_changed", "entity.threat_detected"],
+  "labels": ["treasury", "high-value"],
+  "createdAt": "2026-02-09T08:10:22Z"
+}
+```
+
+## Error-handled example
+
+```typescript
+const payload = {
+  entity: '0x742d35Cc6634C0532925a3b844Bc454c459dFE2C',
+  entityType: 'wallet',
+  threshold: 70,
+  notifyOn: ['entity.risk_changed', 'entity.threat_detected'],
+  labels: ['treasury', 'high-value'],
+  enabled: true
+};
+
+try {
+  const response = await fetch('https://api.cryptoguard.ai/v1/monitors', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.CRYPTOGUARD_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.json();
+    throw new Error(errorBody?.error?.message ?? 'Failed to create monitor');
+  }
+
+  const data = await response.json();
+  console.log('Monitor created:', data.id);
+} catch (error) {
+  console.error('Create monitor failed:', error);
+}
+```
+
+## Next steps
+
+- Review supported events in [Webhook events](/api-reference/webhooks/events).
+- See common failures in [Error handling](/api-reference/errors).

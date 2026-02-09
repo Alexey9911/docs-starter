@@ -32,11 +32,9 @@ See [Authentication](/api-reference/authentication) for details on obtaining API
 
 ### Headers
 
-| Header | Required | Description |
-|--------|----------|-------------|
-| `Authorization` | Yes | Bearer token for authentication |
-| `Content-Type` | Yes* | `application/json` for POST/PUT requests |
-| `X-Request-ID` | No | Client-provided request ID for tracing |
+- `Authorization` (required): Bearer token for authentication.
+- `Content-Type` (required for POST/PUT): `application/json`.
+- `X-Request-ID` (optional): Client-provided request ID for tracing.
 
 ### Example Request
 
@@ -109,11 +107,9 @@ interface APIResponse<T> {
 
 ## Rate Limits
 
-| Tier | Requests/min | Requests/day | Burst |
-|------|--------------|--------------|-------|
-| Free | 60 | 1,000 | 10 |
-| Pro | 300 | 50,000 | 50 |
-| Enterprise | 1,000 | Unlimited | 200 |
+- **Free**: 60 requests/min. 1,000 requests/day. Burst 10.
+- **Pro**: 300 requests/min. 50,000 requests/day. Burst 50.
+- **Enterprise**: 1,000 requests/min. Unlimited requests/day. Burst 200.
 
 Rate limit headers are included in every response:
 
@@ -133,9 +129,7 @@ X-RateLimit-Reset: 1705329720
 
 The API is versioned via URL path (`/v1/`, `/v2/`). Breaking changes require a new version.
 
-| Version | Status | End of Life |
-|---------|--------|-------------|
-| v1 | Active | - |
+- **v1**: Active. End of life not scheduled.
 
 ---
 
@@ -161,27 +155,21 @@ Official SDKs are available:
 
 ### Scanning
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/v1/scan/url` | Scan a URL for phishing |
-| POST | `/v1/scan/contract` | Analyze smart contract |
-| GET | `/v1/scan/wallet/{address}` | Assess wallet risk |
-| POST | `/v1/scan/transaction` | Analyze transaction |
+- `POST /v1/scan/url`: Scan a URL for phishing.
+- `POST /v1/scan/contract`: Analyze a smart contract.
+- `GET /v1/scan/wallet/{address}`: Assess wallet risk.
+- `POST /v1/scan/transaction`: Analyze a transaction.
 
 ### Risk Analysis
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/v1/risk/score/{entity}` | Get risk score |
-| GET | `/v1/risk/report/{entity}` | Get full risk report |
+- `GET /v1/risk/score/{entity}`: Get a risk score.
+- `GET /v1/risk/report/{entity}`: Get a full risk report.
 
 ### Webhooks
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/v1/webhooks` | Create webhook |
-| GET | `/v1/webhooks` | List webhooks |
-| DELETE | `/v1/webhooks/{id}` | Delete webhook |
+- `POST /v1/webhooks`: Create a webhook.
+- `GET /v1/webhooks`: List webhooks.
+- `DELETE /v1/webhooks/{id}`: Delete a webhook.
 
 ---
 

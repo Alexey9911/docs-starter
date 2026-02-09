@@ -51,18 +51,16 @@ interface ErrorResponse {
 
 ## HTTP Status Codes
 
-| Status | Meaning | Retry? |
-|--------|---------|--------|
-| 200 | Success | - |
-| 201 | Created | - |
-| 400 | Bad Request | No |
-| 401 | Unauthorized | No |
-| 403 | Forbidden | No |
-| 404 | Not Found | No |
-| 429 | Rate Limited | Yes (with backoff) |
-| 500 | Server Error | Yes (with backoff) |
-| 502 | Bad Gateway | Yes (with backoff) |
-| 503 | Service Unavailable | Yes (with backoff) |
+- `200`: Success. Retry: Not needed.
+- `201`: Created. Retry: Not needed.
+- `400`: Bad request. Retry: No.
+- `401`: Unauthorized. Retry: No.
+- `403`: Forbidden. Retry: No.
+- `404`: Not found. Retry: No.
+- `429`: Rate limited. Retry: Yes, with backoff.
+- `500`: Server error. Retry: Yes, with backoff.
+- `502`: Bad gateway. Retry: Yes, with backoff.
+- `503`: Service unavailable. Retry: Yes, with backoff.
 
 ---
 
@@ -70,45 +68,35 @@ interface ErrorResponse {
 
 ### Authentication Errors
 
-| Code | Status | Description |
-|------|--------|-------------|
-| `MISSING_AUTH` | 401 | Authorization header not provided |
-| `INVALID_API_KEY` | 401 | API key format is invalid |
-| `EXPIRED_API_KEY` | 401 | API key has been revoked |
-| `INSUFFICIENT_SCOPE` | 403 | Key lacks required permissions |
+- `MISSING_AUTH` (401): Authorization header not provided.
+- `INVALID_API_KEY` (401): API key format is invalid.
+- `EXPIRED_API_KEY` (401): API key has been revoked.
+- `INSUFFICIENT_SCOPE` (403): Key lacks required permissions.
 
 ### Validation Errors
 
-| Code | Status | Description |
-|------|--------|-------------|
-| `VALIDATION_ERROR` | 400 | Request body validation failed |
-| `INVALID_ADDRESS` | 400 | Blockchain address format invalid |
-| `INVALID_CHAIN` | 400 | Unsupported blockchain |
-| `INVALID_URL` | 400 | URL format invalid |
-| `MISSING_PARAMETER` | 400 | Required parameter not provided |
+- `VALIDATION_ERROR` (400): Request body validation failed.
+- `INVALID_ADDRESS` (400): Blockchain address format invalid.
+- `INVALID_CHAIN` (400): Unsupported blockchain.
+- `INVALID_URL` (400): URL format invalid.
+- `MISSING_PARAMETER` (400): Required parameter not provided.
 
 ### Resource Errors
 
-| Code | Status | Description |
-|------|--------|-------------|
-| `NOT_FOUND` | 404 | Requested resource doesn't exist |
-| `CONTRACT_NOT_FOUND` | 404 | Contract not deployed at address |
-| `CHAIN_NOT_SUPPORTED` | 400 | Chain ID not supported |
+- `NOT_FOUND` (404): Requested resource does not exist.
+- `CONTRACT_NOT_FOUND` (404): Contract not deployed at address.
+- `CHAIN_NOT_SUPPORTED` (400): Chain ID not supported.
 
 ### Rate Limiting
 
-| Code | Status | Description |
-|------|--------|-------------|
-| `RATE_LIMIT_EXCEEDED` | 429 | Too many requests |
-| `QUOTA_EXCEEDED` | 429 | Daily quota reached |
+- `RATE_LIMIT_EXCEEDED` (429): Too many requests.
+- `QUOTA_EXCEEDED` (429): Daily quota reached.
 
 ### Server Errors
 
-| Code | Status | Description |
-|------|--------|-------------|
-| `INTERNAL_ERROR` | 500 | Unexpected server error |
-| `SERVICE_UNAVAILABLE` | 503 | Service temporarily down |
-| `UPSTREAM_ERROR` | 502 | Data provider unavailable |
+- `INTERNAL_ERROR` (500): Unexpected server error.
+- `SERVICE_UNAVAILABLE` (503): Service temporarily down.
+- `UPSTREAM_ERROR` (502): Data provider unavailable.
 
 ---
 

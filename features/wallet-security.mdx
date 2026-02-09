@@ -165,13 +165,11 @@ const revokeTx = await guard.wallet.revokeApproval({
 
 ### Suspicious Approval Detection
 
-| Indicator | Risk Level | Action |
-|-----------|------------|--------|
-| Unlimited approval to unknown contract | 🔴 Critical | Immediate revocation recommended |
-| Approval to unverified contract | 🟠 High | Review and consider revoking |
-| Old unused approval | 🟡 Medium | Consider revoking |
-| Approval to EOA (non-contract) | 🔴 Critical | Immediate revocation |
-| Recently deployed spender | 🟠 High | Monitor closely |
+- **Unlimited approval to unknown contract**: 🔴 Critical. Immediate revocation recommended.
+- **Approval to unverified contract**: 🟠 High. Review and consider revoking.
+- **Old unused approval**: 🟡 Medium. Consider revoking.
+- **Approval to EOA (non-contract)**: 🔴 Critical. Immediate revocation.
+- **Recently deployed spender**: 🟠 High. Monitor closely.
 
 ---
 
@@ -223,13 +221,11 @@ interface WalletProfile {
 
 ## Wallet Scoring Factors
 
-| Factor | Weight | Description |
-|--------|--------|-------------|
-| Age | 15% | Older wallets are generally safer |
-| Transaction History | 20% | Consistent, legitimate activity |
-| Funding Source | 25% | Origin of funds (CEX, mixer, etc.) |
-| Associations | 25% | Connected addresses and contracts |
-| Labels | 15% | Known labels (whale, hacker, etc.) |
+- **Age (15%)**: Older wallets are generally safer.
+- **Transaction history (20%)**: Consistent, legitimate activity.
+- **Funding source (25%)**: Origin of funds (CEX, mixer, and more).
+- **Associations (25%)**: Connected addresses and contracts.
+- **Labels (15%)**: Known labels (whale, hacker, and more).
 
 ### Known Wallet Labels
 

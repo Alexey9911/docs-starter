@@ -1,5 +1,68 @@
 ---
-title: 'New Plant'
-openapi: 'WEBHOOK /plant/webhook'
+title: 'Monitor webhook'
+description: 'Receive monitor alerts via webhook delivery'
+openapi: 'WEBHOOK /monitors/webhook'
 icon: 'bell'
 ---
+
+When a monitor changes state or crosses a risk threshold, CryptoGuard sends a signed webhook request to your endpoint.
+
+## What you receive
+
+- `X-Cryptoguard-Signature`: HMAC-SHA256 signature for verification.
+- `X-Cryptoguard-Event`: Event type such as `entity.risk_changed`.
+- JSON payload that includes the entity, risk delta, and context.
+
+## Example payload
+
+```json
+{
+  "id": "evt_6g3m1k",
+  "type": "entity.risk_changed",
+  "timestamp": "2026-02-09T08:20:11Z",
+  "data": {
+    "entity": "0x742d35Cc6634C0532925a3b844Bc454c459dFE2C",
+    "entityType": "wallet",
+    "previousScore": 22,
+    "currentScore": 78,
+    "change": 56,
+    "factors": ["suspicious funding source", "new risky interaction"]
+  }
+}
+```
+
+## Signature verification
+
+```typescript
+import crypto from 'node:crypto';
+
+function verifySignature(payload: string, signature: string, secret: string): boolean {
+  const digest = crypto.createHmac('sha256', secret).update(payload).digest('hex');
+  return signature === `sha256=${digest}`;
+}
+
+try {
+  const signature = request.headers['x-cryptoguard-signature'] as string;
+  const rawBody = request.rawBody as string;
+
+  if (!verifySignature(rawBody, signature, process.env.CRYPTOGUARD_WEBHOOK_SECRET ?? '')) {
+    throw new Error('Invalid signature');
+  }
+
+  const event = JSON.parse(rawBody);
+  console.log('Webhook event:', event.type);
+} catch (error) {
+  console.error('Webhook verification failed:', error);
+}
+```
+
+## Response requirements
+
+- Return `2xx` within 5 seconds.
+- Do not parse JSON after timeouts.
+- Retry logic is handled by CryptoGuard.
+
+## Next steps
+
+- See the full event list in [Webhook events](/api-reference/webhooks/events).
+- Review recommended retries in [Error handling](/api-reference/errors).

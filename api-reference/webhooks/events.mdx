@@ -8,13 +8,11 @@ Configure webhooks to receive real-time notifications when security events occur
 
 ## Supported Events
 
-| Event Type | Description |
-|------------|-------------|
-| `entity.risk_changed` | Risk score changed significantly |
-| `entity.threat_detected` | New threat detected |
-| `address.interaction` | Monitored address interacted with risky entity |
-| `approval.new` | New token approval detected |
-| `approval.revoked` | Token approval revoked |
+- `entity.risk_changed`: Risk score changed significantly.
+- `entity.threat_detected`: New threat detected.
+- `address.interaction`: Monitored address interacted with a risky entity.
+- `approval.new`: New token approval detected.
+- `approval.revoked`: Token approval revoked.
 
 ---
 
@@ -226,13 +224,11 @@ def handle_webhook():
 
 Failed webhook deliveries are retried with exponential backoff:
 
-| Attempt | Delay |
-|---------|-------|
-| 1 | Immediate |
-| 2 | 1 minute |
-| 3 | 5 minutes |
-| 4 | 30 minutes |
-| 5 | 2 hours |
+- Attempt 1: Immediate.
+- Attempt 2: 1 minute.
+- Attempt 3: 5 minutes.
+- Attempt 4: 30 minutes.
+- Attempt 5: 2 hours.
 
 After 5 failed attempts, the webhook is marked as `failing` and requires manual re-activation.
 

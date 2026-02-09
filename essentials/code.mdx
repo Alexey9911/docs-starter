@@ -33,3 +33,64 @@ class HelloWorld {
 }
 ```
 ````
+
+## Language identifiers
+
+Choose a language identifier that matches the syntax you are showing. This keeps highlighting accurate and makes examples easier to scan.
+
+- `bash` for terminal commands.
+- `json` for API responses.
+- `typescript` or `javascript` for SDK examples.
+- `yaml` for configuration files.
+
+## Filenames and titles
+
+If your example maps to a real file, include the filename after the language. This helps readers orient quickly.
+
+```typescript cg-config.ts
+export const policy = {
+  autoBlock: true,
+  riskThreshold: 75
+};
+```
+
+## Command output
+
+When you show CLI output, separate the command from the output so you can explain what happened.
+
+```bash
+cryptoguard scan url https://example.com
+```
+
+```text
+Status: warning
+Risk score: 62
+Reason: newly registered domain
+```
+
+## Error handling in examples
+
+When you show API calls, include an error path so readers know what to expect when something goes wrong.
+
+```typescript
+try {
+  const response = await fetch('https://api.cryptoguard.ai/v1/scan/url', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.CRYPTOGUARD_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ url: 'https://example.com' })
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.json();
+    throw new Error(errorBody?.error?.message ?? 'Scan failed');
+  }
+
+  const payload = await response.json();
+  console.log('Risk score:', payload.data.riskScore);
+} catch (error) {
+  console.error('Request failed:', error);
+}
+```

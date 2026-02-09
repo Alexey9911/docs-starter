@@ -58,12 +58,10 @@ cryptoguard scan url https://example.com --json
 
 #### Options
 
-| Flag | Description |
-|------|-------------|
-| `--chain, -c` | Blockchain network (ethereum, bsc, polygon) |
-| `--json, -j` | Output as JSON |
-| `--verbose, -v` | Show detailed output |
-| `--timeout, -t` | Request timeout in seconds |
+- `--chain, -c`: Blockchain network (ethereum, bsc, polygon).
+- `--json, -j`: Output as JSON.
+- `--verbose, -v`: Show detailed output.
+- `--timeout, -t`: Request timeout in seconds.
 
 ---
 
@@ -223,14 +221,12 @@ cryptoguard batch risk addresses.txt --output results.csv
 
 ## Exit Codes
 
-| Code | Meaning |
-|------|---------|
-| 0 | Success |
-| 1 | General error |
-| 2 | Invalid arguments |
-| 3 | Authentication error |
-| 4 | Rate limit exceeded |
-| 10+ | Risk threshold exceeded |
+- `0`: Success.
+- `1`: General error.
+- `2`: Invalid arguments.
+- `3`: Authentication error.
+- `4`: Rate limit exceeded.
+- `10+`: Risk threshold exceeded.
 
 Use exit codes in scripts:
 

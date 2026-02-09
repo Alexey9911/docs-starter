@@ -1,5 +1,55 @@
 ---
-title: 'Delete Plant'
-openapi: 'DELETE /plants/{id}'
+title: 'Delete monitor'
+description: 'Delete a monitor by ID'
+openapi: 'DELETE /monitors/{id}'
 icon: 'trash'
 ---
+
+Use this endpoint to permanently delete a monitor you no longer need.
+
+## Path parameters
+
+- `id`: The monitor ID, for example `mon_9u5c7w4n`.
+
+## Example request
+
+```bash
+curl --request DELETE \
+  --url https://api.cryptoguard.ai/v1/monitors/mon_9u5c7w4n \
+  --header 'Authorization: Bearer cg_live_xxxxxxxxxxxxxxxx'
+```
+
+## Example response
+
+```json
+{
+  "id": "mon_9u5c7w4n",
+  "deleted": true
+}
+```
+
+## Error-handled example
+
+```typescript
+try {
+  const response = await fetch('https://api.cryptoguard.ai/v1/monitors/mon_9u5c7w4n', {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${process.env.CRYPTOGUARD_API_KEY}` }
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.json();
+    throw new Error(errorBody?.error?.message ?? 'Failed to delete monitor');
+  }
+
+  const payload = await response.json();
+  console.log('Deleted:', payload.deleted);
+} catch (error) {
+  console.error('Delete monitor failed:', error);
+}
+```
+
+## Next steps
+
+- Pause instead of delete by updating the monitor status in your dashboard.
+- Review error cases in [Error handling](/api-reference/errors).

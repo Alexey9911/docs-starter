@@ -1,5 +1,74 @@
 ---
-title: 'Get Plants'
-openapi: 'GET /plants'
-icon: 'download'
+title: 'List monitors'
+description: 'List existing monitors with filters and pagination'
+openapi: 'GET /monitors'
+icon: 'list'
 ---
+
+Use this endpoint to list monitors and filter them by type, status, or label.
+
+## Query parameters
+
+- `limit`: Number of results to return. Default `25`.
+- `cursor`: Pagination cursor from a previous response.
+- `entityType`: Filter by `wallet`, `contract`, or `url`.
+- `status`: Filter by `active`, `paused`, or `failing`.
+- `label`: Filter by a single label.
+
+## Example request
+
+```bash
+curl --request GET \
+  --url 'https://api.cryptoguard.ai/v1/monitors?limit=10&entityType=wallet&status=active' \
+  --header 'Authorization: Bearer cg_live_xxxxxxxxxxxxxxxx'
+```
+
+## Example response
+
+```json
+{
+  "data": [
+    {
+      "id": "mon_9u5c7w4n",
+      "entity": "0x742d35Cc6634C0532925a3b844Bc454c459dFE2C",
+      "entityType": "wallet",
+      "status": "active",
+      "threshold": 70,
+      "labels": ["treasury", "high-value"],
+      "createdAt": "2026-02-09T08:10:22Z"
+    }
+  ],
+  "meta": {
+    "nextCursor": "cursor_3d9b1f",
+    "count": 1
+  }
+}
+```
+
+## Error-handled example
+
+```typescript
+try {
+  const response = await fetch(
+    'https://api.cryptoguard.ai/v1/monitors?limit=10&entityType=wallet&status=active',
+    {
+      headers: { Authorization: `Bearer ${process.env.CRYPTOGUARD_API_KEY}` }
+    }
+  );
+
+  if (!response.ok) {
+    const errorBody = await response.json();
+    throw new Error(errorBody?.error?.message ?? 'Failed to list monitors');
+  }
+
+  const payload = await response.json();
+  console.log('Monitor count:', payload.meta.count);
+} catch (error) {
+  console.error('List monitors failed:', error);
+}
+```
+
+## Next steps
+
+- Learn how to create a monitor in [Create monitor](/api-reference/endpoint/create).
+- Review pagination behavior in [API introduction](/api-reference/introduction).

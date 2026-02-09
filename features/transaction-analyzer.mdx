@@ -106,12 +106,10 @@ interface ApprovalAnalysis {
 
 ### Approval Risk Levels
 
-| Approval Type | Risk Level | Recommendation |
-|---------------|------------|----------------|
-| Limited (exact amount) | 🟢 Safe | Approve as requested |
-| Limited (10x requested) | 🟡 Caution | Consider reducing |
-| Unlimited | 🔴 Danger | Set specific limit |
-| Unknown spender | 🔴 Danger | Do not approve |
+- **Limited (exact amount)**: 🟢 Safe. Approve as requested.
+- **Limited (10x requested)**: 🟡 Caution. Consider reducing.
+- **Unlimited**: 🔴 Danger. Set a specific limit.
+- **Unknown spender**: 🔴 Danger. Do not approve.
 
 ---
 
@@ -254,23 +252,6 @@ console.log('Gas estimate:', simulation.gasUsed);
 console.log('Will succeed:', simulation.success);
 console.log('Balance changes:', simulation.balanceChanges);
 ```
-
----
-
-## Risk Flags
-
-Common transaction risk flags:
-
-| Flag | Severity | Description |
-|------|----------|-------------|
-| `unlimited_approval` | 🔴 High | Approving max uint256 tokens |
-| `unverified_contract` | 🟠 Medium | Contract source not verified |
-| `high_gas` | 🟡 Low | Unusually high gas estimate |
-| `new_contract` | 🟠 Medium | Contract deployed < 24h ago |
-| `suspicious_data` | 🔴 High | Unusual function call pattern |
-| `value_mismatch` | 🔴 High | Transfer amount differs from display |
-| `hidden_transfer` | 🔴 Critical | Undisclosed token movement |
-| `approval_to_eoa` | 🔴 Critical | Approving tokens to non-contract |
 
 ---
 

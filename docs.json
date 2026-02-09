@@ -65,7 +65,6 @@
           {
             "group": "Getting Started",
             "pages": [
-              "index",
               "getting-started/quickstart",
               "getting-started/installation"
             ]

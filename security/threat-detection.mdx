@@ -1,271 +1,50 @@
 ---
 title: "Threat Detection"
-description: "Detection methodologies and security analysis approaches"
+description: "How CryptoGuard identifies malicious activity"
 icon: "radar"
 ---
 
-CryptoGuard employs multiple threat detection methodologies to identify malicious activity across the Web3 ecosystem.
+CryptoGuard uses a layered detection system that combines rules, learned models, and simulations. The goal is to surface risks early without relying on a single signal.
 
-## Detection Approaches
+## Detection principles
 
-<CardGroup cols={2}>
-  <Card title="Signature-Based" icon="fingerprint">
-    Pattern matching against known threats
-  </Card>
-  <Card title="Heuristic Analysis" icon="brain">
-    Behavioral patterns and anomaly detection
-  </Card>
-  <Card title="ML Classification" icon="chart-network">
-    Machine learning threat categorization
-  </Card>
-  <Card title="Simulation" icon="flask">
-    Transaction and contract simulation
-  </Card>
-</CardGroup>
+- Prefer local checks for speed and privacy.
+- Require multiple signals for high-impact blocks.
+- Explain every warning in human terms.
 
----
+## Signals we analyze
 
-## Signature-Based Detection
+- URL structure and redirect behavior
+- Page scripts and wallet connection flows
+- Smart contract bytecode and function selectors
+- Transaction intent, value movement, and approvals
+- Reputation data for addresses and domains
 
-### How It Works
+## Detection flow
 
-Signature-based detection matches against a database of known threats:
+1. Fast checks run locally for immediate warnings.
+2. A deeper analysis runs when higher risk is suspected.
+3. A final decision is made from combined signals.
 
-```typescript
-interface ThreatSignature {
-  id: string;
-  type: 'url' | 'contract' | 'function' | 'address';
-  pattern: string | RegExp;
-  severity: 'low' | 'medium' | 'high' | 'critical';
-  category: ThreatCategory;
-  metadata: {
-    firstSeen: string;
-    reportCount: number;
-    confidence: number;
-  };
-}
+## Response actions
 
-type ThreatCategory =
-  | 'phishing'
-  | 'honeypot'
-  | 'rug_pull'
-  | 'exploit'
-  | 'scam'
-  | 'mixer'
-  | 'sanctioned';
-```
+- Warn when signals are suspicious but unconfirmed
+- Block when evidence is high confidence
+- Explain why a risk was surfaced so you can decide
 
-### Signature Database
+## Model safety
 
-| Category | Signatures | Update Frequency |
-|----------|------------|------------------|
-| Phishing URLs | 150,000+ | Real-time |
-| Malicious Contracts | 45,000+ | Hourly |
-| Exploit Addresses | 8,500+ | Real-time |
-| Function Selectors | 2,000+ | Daily |
-| Blacklisted Domains | 300,000+ | 15 minutes |
+Models are used for classification, but every decision is constrained by rule-based safeguards so false positives do not automatically block actions.
 
-### Matching Process
+## Confidence levels
 
-```typescript
-async function checkSignatures(entity: ScanEntity): Promise<SignatureMatch[]> {
-  const matches: SignatureMatch[] = [];
-  
-  // 1. Exact match (O(1) hash lookup)
-  const exactMatch = await signatureDB.get(entity.hash);
-  if (exactMatch) {
-    matches.push({ type: 'exact', signature: exactMatch });
-  }
-  
-  // 2. Fuzzy match for URLs (Levenshtein distance)
-  if (entity.type === 'url') {
-    const fuzzyMatches = await findSimilarUrls(entity.url, threshold: 3);
-    matches.push(...fuzzyMatches.map(m => ({ type: 'fuzzy', ...m })));
-  }
-  
-  // 3. Pattern match for contracts
-  if (entity.type === 'contract') {
-    const patternMatches = await matchBytecodePatterns(entity.bytecode);
-    matches.push(...patternMatches);
-  }
-  
-  return matches;
-}
-```
+CryptoGuard assigns a confidence score alongside risk. A medium confidence warning suggests you should review details, while a high confidence block indicates multiple independent signals confirm malicious behavior.
 
----
+## Handling false positives
 
-## Heuristic Analysis
+If you believe a warning is incorrect, report it directly from the extension. This feeds back into signal validation and helps the system improve without reducing baseline protection.
 
-### Behavioral Patterns
+## Next steps
 
-Heuristic detection identifies suspicious behavior without exact signature matches:
-
-```typescript
-interface HeuristicRule {
-  id: string;
-  name: string;
-  description: string;
-  check: (entity: Entity) => Promise<boolean>;
-  weight: number;
-  falsePositiveRate: number;
-}
-
-const heuristicRules: HeuristicRule[] = [
-  {
-    id: 'new_domain',
-    name: 'Recently Registered Domain',
-    description: 'Domain registered less than 30 days ago',
-    check: async (entity) => entity.domainAge < 30,
-    weight: 15,
-    falsePositiveRate: 0.05
-  },
-  {
-    id: 'typosquat',
-    name: 'Typosquatting Detection',
-    description: 'Domain similar to known legitimate domain',
-    check: async (entity) => await isTyposquat(entity.domain),
-    weight: 35,
-    falsePositiveRate: 0.01
-  },
-  {
-    id: 'hidden_owner',
-    name: 'Hidden Contract Owner',
-    description: 'Contract has obfuscated owner address',
-    check: async (entity) => await hasHiddenOwner(entity.address),
-    weight: 25,
-    falsePositiveRate: 0.02
-  }
-];
-```
-
-### URL Heuristics
-
-| Heuristic | Weight | Description |
-|-----------|--------|-------------|
-| New Domain (<30 days) | 15 | Fresh domains are higher risk |
-| Typosquatting | 35 | Similar to known brands |
-| Suspicious TLD | 10 | .xyz, .tk, .ml often abused |
-| IP Address URL | 20 | Direct IP access |
-| Excessive Subdomains | 10 | metamask.login.verify.site.com |
-| Missing SSL | 15 | No HTTPS |
-| Self-Signed SSL | 10 | Invalid certificate |
-
-### Contract Heuristics
-
-| Heuristic | Weight | Description |
-|-----------|--------|-------------|
-| Unverified Source | 15 | No verified source code |
-| High Sell Tax (>15%) | 25 | Excessive sell fees |
-| Blacklist Function | 20 | Can block addresses |
-| Hidden Owner | 25 | Obfuscated ownership |
-| Recent Deployment (<24h) | 15 | Brand new contract |
-| Single LP Provider | 20 | Liquidity concentration |
-
----
-
-## Machine Learning Detection
-
-### Real-Time Classification
-
-```typescript
-interface MLPrediction {
-  entity: string;
-  model: string;
-  predictions: {
-    class: string;
-    probability: number;
-    confidence: number;
-  }[];
-  features: Record<string, number>;
-  processingTime: number;
-}
-
-// Example prediction
-const prediction = await mlClassifier.predict({
-  type: 'contract',
-  address: '0x...',
-  chain: 'ethereum'
-});
-
-// Output:
-// {
-//   entity: '0x...',
-//   model: 'contract_classifier_v3',
-//   predictions: [
-//     { class: 'honeypot', probability: 0.87, confidence: 0.92 },
-//     { class: 'legitimate', probability: 0.08, confidence: 0.92 },
-//     { class: 'scam', probability: 0.05, confidence: 0.92 }
-//   ],
-//   features: { sellTax: 0.95, hiddenOwner: 1.0, ... },
-//   processingTime: 45
-// }
-```
-
-### Ensemble Decision
-
-```typescript
-function ensembleDecision(
-  signature: SignatureMatch[],
-  heuristic: HeuristicResult,
-  ml: MLPrediction
-): ThreatDecision {
-  // Priority 1: Known signatures
-  if (signature.some(s => s.severity === 'critical')) {
-    return { action: 'block', confidence: 1.0 };
-  }
-  
-  // Priority 2: High ML confidence
-  if (ml.predictions[0].probability > 0.9 && ml.predictions[0].class !== 'legitimate') {
-    return { action: 'block', confidence: ml.predictions[0].probability };
-  }
-  
-  // Priority 3: Combined heuristic score
-  if (heuristic.totalScore > 60) {
-    return { action: 'warn', confidence: heuristic.totalScore / 100 };
-  }
-  
-  return { action: 'allow', confidence: 0.95 };
-}
-```
-
----
-
-## Real-Time vs Batch Analysis
-
-| Aspect | Real-Time | Batch |
-|--------|-----------|-------|
-| Latency | <100ms | Hours |
-| Depth | Surface analysis | Deep analysis |
-| Use Case | URL blocking, transaction warnings | Database updates, ML training |
-| Coverage | Current entity | Historical patterns |
-
-### Real-Time Pipeline
-
-```
-Request → Cache Check → Signature Match → Heuristic Scan → ML Inference → Response
-           (1ms)         (5ms)            (10ms)          (30ms)        Total: ~50ms
-```
-
-### Batch Pipeline
-
-```
-Scheduled Job → Data Collection → Deep Analysis → Database Update → Model Retraining
-                   (1 hour)         (4 hours)       (immediate)      (weekly)
-```
-
----
-
-## Threat Response Timeline
-
-| Detection Time | Response |
-|----------------|----------|
-| 0-30 seconds | Critical exploits added to blocklist |
-| 1-5 minutes | High-confidence signatures propagated |
-| 15 minutes | Phishing domains synchronized |
-| 1 hour | Contract analysis updates |
-| 24 hours | ML model predictions recalibrated |
-
-<Note>
-  Zero-day threats are handled through heuristic and ML detection before signatures are available.
-</Note>
+- See how results are summarized in [Risk scoring](/features/risk-scoring).
+- Learn about the model pipeline in [AI engine](/architecture/ai-engine).
