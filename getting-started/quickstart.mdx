@@ -1,12 +1,12 @@
 ---
 title: "Quick Start"
-description: "Get CryptoGuard up and running in under 2 minutes"
+description: "Get ChainGuard up and running in under 2 minutes"
 icon: "rocket"
 ---
 
-![CryptoGuard Web3 security banner](/images/banner%20x%203x.png)
+![ChainGuard Web3 security banner](/images/banner%20x%203x.png)
 
-Use this quick start to install CryptoGuard, trigger your first scan, and understand the most important signals you will see in the extension.
+Use this quick start to install ChainGuard, trigger your first scan, and understand the most important signals you will see in the extension.
 
 ## Installation
 
@@ -16,16 +16,16 @@ Use this quick start to install CryptoGuard, trigger your first scan, and unders
     
     ```bash
     # Direct link
-    https://chrome.google.com/webstore/detail/cryptoguard
+    https://chrome.google.com/webstore/detail/chainguard
     ```
   </Step>
   
   <Step title="Pin to Toolbar">
-    Click the puzzle icon in your browser toolbar and pin CryptoGuard for easy access.
+    Click the puzzle icon in your browser toolbar and pin ChainGuard for easy access.
   </Step>
   
   <Step title="Start Browsing">
-    Navigate to any Web3 site. CryptoGuard automatically activates and begins scanning.
+    Navigate to any Web3 site. ChainGuard automatically activates and begins scanning.
   </Step>
 </Steps>
 
@@ -33,11 +33,11 @@ Use this quick start to install CryptoGuard, trigger your first scan, and unders
 
 ## First Scan
 
-Once installed, CryptoGuard initializes its WASM core and establishes a secure WebSocket connection.
+Once installed, ChainGuard initializes its WASM core and establishes a secure WebSocket connection.
 
 ```typescript
 // [Internal Log] Core Initialization
-[INFO] Loading @cryptoguard/core-wasm v1.2.4... OK
+[INFO] Loading @chainguard/core-wasm v1.2.4... OK
 [INFO] Initializing ThreatEngine...
        - PhishingModel: LOADED (14ms)
        - ContractAnalyzer: READY (22ms)
@@ -52,7 +52,7 @@ When you visit a dApp, the analysis pipeline triggers:
 3. **DOM Mutation Observer**: Scans for injected web3 provider hooks.
 4. **Heuristic Analysis**: Evaluates entropy of page content for obfuscation.
 
-You'll see the CryptoGuard icon change color based on threat level:
+You'll see the ChainGuard icon change color based on threat level:
 
 - 🟢 Green: Safe. Proceed normally.
 - 🟡 Yellow: Caution. Review warnings before proceeding.
@@ -62,7 +62,7 @@ You'll see the CryptoGuard icon change color based on threat level:
 
 ## Extension Popup
 
-Click the CryptoGuard icon to open the popup interface:
+Click the ChainGuard icon to open the popup interface:
 
 ### Analysis Module
 
@@ -145,7 +145,7 @@ For enterprise deployments or power users, you can import a JSON configuration:
 ```
 
 <Note>
-  CryptoGuard never stores private keys or seed phrases. All analysis is performed on public blockchain data only.
+  ChainGuard never stores private keys or seed phrases. All analysis is performed on public blockchain data only.
 </Note>
 
 ---

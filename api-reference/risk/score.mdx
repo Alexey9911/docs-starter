@@ -1,6 +1,6 @@
 ---
 title: "Get Risk Score"
-api: "GET https://api.cryptoguard.ai/v1/risk/score/{entity}"
+api: "GET https://api.chainguard.dev/v1/risk/score/{entity}"
 description: "Retrieve the risk score for any address, URL, or transaction hash"
 icon: "chart-line"
 ---
@@ -70,7 +70,7 @@ Quick risk score lookup for any entity. For detailed reports, use the [Risk Repo
 <RequestExample>
 ```bash cURL
 curl --request GET \
-  --url 'https://api.cryptoguard.ai/v1/risk/score/0x742d35Cc6634C0532925a3b844Bc454c459dFE2C?chain=ethereum' \
+  --url 'https://api.chainguard.dev/v1/risk/score/0x742d35Cc6634C0532925a3b844Bc454c459dFE2C?chain=ethereum' \
   --header 'Authorization: Bearer cg_live_xxxxxxxxxxxxxxxx'
 ```
 
@@ -78,7 +78,7 @@ curl --request GET \
 const entity = '0x742d35Cc6634C0532925a3b844Bc454c459dFE2C';
 
 const response = await fetch(
-  `https://api.cryptoguard.ai/v1/risk/score/${entity}?chain=ethereum`,
+  `https://api.chainguard.dev/v1/risk/score/${entity}?chain=ethereum`,
   {
     headers: { 'Authorization': `Bearer ${apiKey}` }
   }
@@ -94,7 +94,7 @@ import requests
 entity = '0x742d35Cc6634C0532925a3b844Bc454c459dFE2C'
 
 response = requests.get(
-    f'https://api.cryptoguard.ai/v1/risk/score/{entity}',
+    f'https://api.chainguard.dev/v1/risk/score/{entity}',
     headers={'Authorization': f'Bearer {api_key}'},
     params={'chain': 'ethereum'}
 )

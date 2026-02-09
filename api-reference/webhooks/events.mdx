@@ -82,11 +82,11 @@ POST /v1/webhooks
 
 ```bash
 curl --request POST \
-  --url https://api.cryptoguard.ai/v1/webhooks \
+  --url https://api.chainguard.dev/v1/webhooks \
   --header 'Authorization: Bearer cg_live_xxxxxxxx' \
   --header 'Content-Type: application/json' \
   --data '{
-    "url": "https://your-app.com/webhooks/cryptoguard",
+    "url": "https://your-app.com/webhooks/chainguard",
     "events": ["entity.risk_changed", "entity.threat_detected"],
     "entities": ["0x742d35Cc6634C0532925a3b844Bc454c459dFE2C"]
   }'
@@ -99,7 +99,7 @@ curl --request POST \
   "success": true,
   "data": {
     "id": "wh_abc123def456",
-    "url": "https://your-app.com/webhooks/cryptoguard",
+    "url": "https://your-app.com/webhooks/chainguard",
     "events": ["entity.risk_changed", "entity.threat_detected"],
     "entities": ["0x742d35..."],
     "secret": "whsec_xxxxxxxxxxxxxxxxxxxxxxxx",
@@ -130,7 +130,7 @@ GET /v1/webhooks
     "webhooks": [
       {
         "id": "wh_abc123def456",
-        "url": "https://your-app.com/webhooks/cryptoguard",
+        "url": "https://your-app.com/webhooks/chainguard",
         "events": ["entity.risk_changed"],
         "status": "active",
         "lastTriggered": "2024-01-15T10:00:00Z",
@@ -175,8 +175,8 @@ function verifyWebhookSignature(
 }
 
 // Express.js example
-app.post('/webhooks/cryptoguard', (req, res) => {
-  const signature = req.headers['x-cryptoguard-signature'];
+app.post('/webhooks/chainguard', (req, res) => {
+  const signature = req.headers['x-ChainGuard-signature'];
   const payload = JSON.stringify(req.body);
   
   if (!verifyWebhookSignature(payload, signature, webhookSecret)) {
@@ -204,9 +204,9 @@ def verify_signature(payload: str, signature: str, secret: str) -> bool:
     return hmac.compare_digest(expected, signature)
 
 # Flask example
-@app.route('/webhooks/cryptoguard', methods=['POST'])
+@app.route('/webhooks/chainguard', methods=['POST'])
 def handle_webhook():
-    signature = request.headers.get('X-Cryptoguard-Signature')
+    signature = request.headers.get('X-ChainGuard-Signature')
     payload = request.get_data(as_text=True)
     
     if not verify_signature(payload, signature, WEBHOOK_SECRET):

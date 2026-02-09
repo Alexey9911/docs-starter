@@ -4,7 +4,7 @@ description: "API error codes, response formats, and retry strategies"
 icon: "triangle-exclamation"
 ---
 
-CryptoGuard API uses standard HTTP status codes and provides detailed error information.
+ChainGuard API uses standard HTTP status codes and provides detailed error information.
 
 ## Error Response Format
 
@@ -167,9 +167,9 @@ Retry-After: 30
 ### JavaScript/TypeScript
 
 ```typescript
-import { CryptoGuard, APIError } from '@cryptoguard/sdk';
+import { ChainGuard, APIError } from '@chainguard/sdk';
 
-const client = new CryptoGuard({ apiKey });
+const client = new ChainGuard({ apiKey });
 
 try {
   const result = await client.scan.url('https://example.com');
@@ -201,10 +201,10 @@ try {
 ### Python
 
 ```python
-from cryptoguard import CryptoGuard, APIError, RateLimitError
+from chainguard import ChainGuard, APIError, RateLimitError
 import time
 
-client = CryptoGuard(api_key=api_key)
+client = ChainGuard(api_key=api_key)
 
 try:
     result = client.scan.url('https://example.com')

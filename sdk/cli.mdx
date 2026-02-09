@@ -1,21 +1,21 @@
 ---
 title: "CLI Tool"
-description: "Command-line interface for CryptoGuard API"
+description: "Command-line interface for ChainGuard API"
 icon: "terminal"
 ---
 
-The CryptoGuard CLI provides quick access to security scanning from your terminal.
+The ChainGuard CLI provides quick access to security scanning from your terminal.
 
 ## Installation
 
 ```bash
-npm install -g cryptoguard-cli
+npm install -g chainguard-cli
 ```
 
 or
 
 ```bash
-npx cryptoguard-cli <command>
+npx chainguard-cli <command>
 ```
 
 ---
@@ -25,13 +25,13 @@ npx cryptoguard-cli <command>
 Set your API key:
 
 ```bash
-cryptoguard config set api-key cg_live_xxxxxxxx
+chainguard config set api-key cg_live_xxxxxxxx
 ```
 
 Or use environment variable:
 
 ```bash
-export CRYPTOGUARD_API_KEY=cg_live_xxxxxxxx
+export CHAINGUARD_API_KEY=cg_live_xxxxxxxx
 ```
 
 ---
@@ -44,16 +44,16 @@ Scan URLs, contracts, wallets, or transactions.
 
 ```bash
 # Scan a URL
-cryptoguard scan url https://example.com
+chainguard scan url https://example.com
 
 # Scan a contract
-cryptoguard scan contract 0xdAC17F958D2ee523a2206206994597C13D831ec7 --chain ethereum
+chainguard scan contract 0xdAC17F958D2ee523a2206206994597C13D831ec7 --chain ethereum
 
 # Scan a wallet
-cryptoguard scan wallet 0x742d35Cc6634C0532925a3b844Bc454c459dFE2C
+chainguard scan wallet 0x742d35Cc6634C0532925a3b844Bc454c459dFE2C
 
 # Scan with JSON output
-cryptoguard scan url https://example.com --json
+chainguard scan url https://example.com --json
 ```
 
 #### Options
@@ -71,13 +71,13 @@ Get risk scores and reports.
 
 ```bash
 # Quick score
-cryptoguard risk score 0x742d35Cc6634C0532925a3b844Bc454c459dFE2C
+chainguard risk score 0x742d35Cc6634C0532925a3b844Bc454c459dFE2C
 
 # Full report
-cryptoguard risk report 0x742d35Cc6634C0532925a3b844Bc454c459dFE2C
+chainguard risk report 0x742d35Cc6634C0532925a3b844Bc454c459dFE2C
 
 # Export report as PDF
-cryptoguard risk report 0x... --format pdf --output report.pdf
+chainguard risk report 0x... --format pdf --output report.pdf
 ```
 
 ---
@@ -88,13 +88,13 @@ Monitor entities in real-time.
 
 ```bash
 # Watch a contract for risk changes
-cryptoguard watch 0xdAC17F958D2ee523a2206206994597C13D831ec7
+chainguard watch 0xdAC17F958D2ee523a2206206994597C13D831ec7
 
 # Watch multiple addresses
-cryptoguard watch 0x... 0x... 0x...
+chainguard watch 0x... 0x... 0x...
 
 # Watch with custom threshold
-cryptoguard watch 0x... --threshold 50
+chainguard watch 0x... --threshold 50
 ```
 
 ---
@@ -112,10 +112,10 @@ cat > addresses.txt << EOF
 EOF
 
 # Batch scan
-cryptoguard batch scan addresses.txt --chain ethereum --output results.json
+chainguard batch scan addresses.txt --chain ethereum --output results.json
 
 # Batch risk scores
-cryptoguard batch risk addresses.txt --output scores.csv
+chainguard batch risk addresses.txt --output scores.csv
 ```
 
 ---
@@ -126,16 +126,16 @@ Manage CLI configuration.
 
 ```bash
 # Set API key
-cryptoguard config set api-key cg_live_xxxxxxxx
+chainguard config set api-key cg_live_xxxxxxxx
 
 # Set default chain
-cryptoguard config set default-chain ethereum
+chainguard config set default-chain ethereum
 
 # View config
-cryptoguard config list
+chainguard config list
 
 # Reset config
-cryptoguard config reset
+chainguard config reset
 ```
 
 ---
@@ -145,7 +145,7 @@ cryptoguard config reset
 ### Check a Token Before Buying
 
 ```bash
-$ cryptoguard scan contract 0xDEAD... --chain bsc
+$ chainguard scan contract 0xDEAD... --chain bsc
 
 ╔═══════════════════════════════════════════════════════════╗
 ║                    CONTRACT ANALYSIS                      ║
@@ -169,7 +169,7 @@ $ cryptoguard scan contract 0xDEAD... --chain bsc
 ### Quick URL Check
 
 ```bash
-$ cryptoguard scan url https://metamask-claim.xyz
+$ chainguard scan url https://metamask-claim.xyz
 
 ╔═══════════════════════════════════════════════════════════╗
 ║                      URL ANALYSIS                         ║
@@ -198,7 +198,7 @@ Human-readable table format with colors.
 ### JSON
 
 ```bash
-cryptoguard scan url https://example.com --json
+chainguard scan url https://example.com --json
 ```
 
 ```json
@@ -214,7 +214,7 @@ cryptoguard scan url https://example.com --json
 ### CSV
 
 ```bash
-cryptoguard batch risk addresses.txt --output results.csv
+chainguard batch risk addresses.txt --output results.csv
 ```
 
 ---
@@ -231,7 +231,7 @@ cryptoguard batch risk addresses.txt --output results.csv
 Use exit codes in scripts:
 
 ```bash
-cryptoguard scan contract 0x... --chain ethereum
+chainguard scan contract 0x... --chain ethereum
 if [ $? -ge 10 ]; then
   echo "High risk detected!"
 fi
@@ -245,14 +245,14 @@ fi
 
 ```bash
 # Add to ~/.bashrc
-source <(cryptoguard completion bash)
+source <(chainguard completion bash)
 ```
 
 ### Zsh Completion
 
 ```bash
 # Add to ~/.zshrc
-source <(cryptoguard completion zsh)
+source <(chainguard completion zsh)
 ```
 
 ---
@@ -264,8 +264,8 @@ source <(cryptoguard completion zsh)
 ```yaml
 - name: Security Check
   run: |
-    npm install -g cryptoguard-cli
-    cryptoguard scan contract ${{ env.CONTRACT_ADDRESS }} --chain ethereum --json > scan-result.json
+    npm install -g chainguard-cli
+    chainguard scan contract ${{ env.CONTRACT_ADDRESS }} --chain ethereum --json > scan-result.json
     
     RISK=$(jq '.riskScore' scan-result.json)
     if [ "$RISK" -gt 50 ]; then

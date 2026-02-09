@@ -4,11 +4,11 @@ description: "API key management and authentication methods"
 icon: "key"
 ---
 
-All CryptoGuard API requests require authentication using API keys.
+All ChainGuard API requests require authentication using API keys.
 
 ## API Key Format
 
-CryptoGuard API keys follow this format:
+ChainGuard API keys follow this format:
 
 ```
 cg_<environment>_<32_character_string>
@@ -27,7 +27,7 @@ cg_test_x9y8z7w6v5u4t3s2r1q0p9o8n7m6l5k4
 
 <Steps>
   <Step title="Create Account">
-    Sign up at [dashboard.cryptoguard.ai](https://dashboard.cryptoguard.ai)
+    Sign up at [dashboard.chainguard.dev](https://dashboard.chainguard.dev)
   </Step>
   
   <Step title="Navigate to API Keys">
@@ -57,7 +57,7 @@ Include the API key in the `Authorization` header:
 
 ```bash
 curl --request GET \
-  --url https://api.cryptoguard.ai/v1/risk/score/0x742d35Cc6634C0532925a3b844Bc454c459dFE2C \
+  --url https://api.chainguard.dev/v1/risk/score/0x742d35Cc6634C0532925a3b844Bc454c459dFE2C \
   --header 'Authorization: Bearer cg_live_xxxxxxxxxxxxxxxx'
 ```
 
@@ -67,7 +67,7 @@ For testing only. Not secure for production:
 
 ```bash
 curl --request GET \
-  --url 'https://api.cryptoguard.ai/v1/risk/score/0x...?api_key=cg_live_xxxxxxxx'
+  --url 'https://api.chainguard.dev/v1/risk/score/0x...?api_key=cg_live_xxxxxxxx'
 ```
 
 ---
@@ -149,12 +149,12 @@ Rate limits are applied per API key. Multiple keys do not combine limits.
 
 ```bash
 # .env file (never commit this)
-CRYPTOGUARD_API_KEY=cg_live_xxxxxxxxxxxxxxxx
+CHAINGUARD_API_KEY=cg_live_xxxxxxxxxxxxxxxx
 ```
 
 ```typescript
 // Usage in code
-const apiKey = process.env.CRYPTOGUARD_API_KEY;
+const apiKey = process.env.CHAINGUARD_API_KEY;
 ```
 
 ---

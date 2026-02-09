@@ -1,21 +1,21 @@
 ---
 title: "JavaScript SDK"
-description: "Official JavaScript/TypeScript SDK for CryptoGuard API"
+description: "Official JavaScript/TypeScript SDK for ChainGuard API"
 icon: "js"
 ---
 
-The official JavaScript SDK provides type-safe access to the CryptoGuard API with built-in retry logic and error handling.
+The official JavaScript SDK provides type-safe access to the ChainGuard API with built-in retry logic and error handling.
 
 ## Installation
 
 ```bash
-npm install @cryptoguard/sdk
+npm install @chainguard/sdk
 ```
 
 or
 
 ```bash
-yarn add @cryptoguard/sdk
+yarn add @chainguard/sdk
 ```
 
 ---
@@ -23,10 +23,10 @@ yarn add @cryptoguard/sdk
 ## Quick Start
 
 ```typescript
-import { CryptoGuard } from '@cryptoguard/sdk';
+import { ChainGuard } from '@chainguard/sdk';
 
-const guard = new CryptoGuard({
-  apiKey: process.env.CRYPTOGUARD_API_KEY
+const guard = new ChainGuard({
+  apiKey: process.env.CHAINGUARD_API_KEY
 });
 
 // Scan a URL
@@ -46,15 +46,15 @@ console.log('Is Honeypot:', contractResult.isHoneypot);
 ## Configuration
 
 ```typescript
-interface CryptoGuardConfig {
+interface ChainGuardConfig {
   apiKey: string;                 // Required
-  baseUrl?: string;               // Default: https://api.cryptoguard.ai
+  baseUrl?: string;               // Default: https://api.chainguard.dev
   timeout?: number;               // Request timeout in ms (default: 30000)
   retries?: number;               // Retry attempts (default: 3)
   retryDelay?: number;            // Base retry delay in ms (default: 1000)
 }
 
-const guard = new CryptoGuard({
+const guard = new ChainGuard({
   apiKey: 'cg_live_xxxxxxxx',
   timeout: 10000,
   retries: 5
@@ -229,7 +229,7 @@ await guard.webhooks.delete(webhook.id);
 ## Error Handling
 
 ```typescript
-import { CryptoGuard, APIError, RateLimitError, ValidationError } from '@cryptoguard/sdk';
+import { ChainGuard, APIError, RateLimitError, ValidationError } from '@chainguard/sdk';
 
 try {
   const result = await guard.scan.url('https://example.com');
@@ -261,7 +261,7 @@ import type {
   RiskScore,
   RiskReport,
   Webhook
-} from '@cryptoguard/sdk';
+} from '@chainguard/sdk';
 ```
 
 ---
@@ -269,10 +269,10 @@ import type {
 ## React Integration
 
 ```tsx
-import { useCryptoGuard } from '@cryptoguard/sdk/react';
+import { useChainGuard } from '@chainguard/sdk/react';
 
 function SecurityBadge({ url }: { url: string }) {
-  const { data, loading, error } = useCryptoGuard().scan.url(url);
+  const { data, loading, error } = useChainGuard().scan.url(url);
   
   if (loading) return <span>Scanning...</span>;
   if (error) return <span>Error: {error.message}</span>;
@@ -292,9 +292,9 @@ function SecurityBadge({ url }: { url: string }) {
 For browser environments, use the browser build:
 
 ```html
-<script src="https://cdn.cryptoguard.ai/sdk/v1/cryptoguard.min.js"></script>
+<script src="https://cdn.chainguard.dev/sdk/v1/chainguard.min.js"></script>
 <script>
-  const guard = new CryptoGuard({ apiKey: 'cg_live_...' });
+  const guard = new ChainGuard({ apiKey: 'cg_live_...' });
   guard.scan.url(window.location.href).then(result => {
     console.log('Page risk:', result.riskScore);
   });

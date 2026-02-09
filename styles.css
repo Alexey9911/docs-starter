@@ -1,0 +1,29 @@
+:root {
+  --chainguard-hover: #22c978;
+}
+
+/* Navbar and side panel link hover */
+nav a:hover,
+nav a:focus-visible,
+aside a:hover,
+aside a:focus-visible,
+.navbar a:hover,
+.navbar a:focus-visible,
+.sidebar a:hover,
+.sidebar a:focus-visible {
+  color: var(--chainguard-hover) !important;
+}
+
+/* Buttons and CTA hover */
+button:hover,
+button:focus-visible,
+a[role="button"]:hover,
+a[role="button"]:focus-visible,
+.mint-button:hover,
+.mint-button:focus-visible,
+.mintlify-button:hover,
+.mintlify-button:focus-visible {
+  background-color: var(--chainguard-hover) !important;
+  border-color: var(--chainguard-hover) !important;
+  color: #0b0b0b !important;
+}

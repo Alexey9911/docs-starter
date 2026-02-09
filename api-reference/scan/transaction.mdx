@@ -1,6 +1,6 @@
 ---
 title: "Scan Transaction"
-api: "POST https://api.cryptoguard.ai/v1/scan/transaction"
+api: "POST https://api.chainguard.dev/v1/scan/transaction"
 description: "Analyze a transaction before signing for security risks"
 icon: "shuffle"
 ---
@@ -130,7 +130,7 @@ Pre-signing transaction analysis with simulation, balance changes preview, and r
 <RequestExample>
 ```bash cURL
 curl --request POST \
-  --url https://api.cryptoguard.ai/v1/scan/transaction \
+  --url https://api.chainguard.dev/v1/scan/transaction \
   --header 'Authorization: Bearer cg_live_xxxxxxxxxxxxxxxx' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -147,7 +147,7 @@ curl --request POST \
 ```
 
 ```javascript JavaScript
-const response = await fetch('https://api.cryptoguard.ai/v1/scan/transaction', {
+const response = await fetch('https://api.chainguard.dev/v1/scan/transaction', {
   method: 'POST',
   headers: {
     'Authorization': `Bearer ${apiKey}`,
@@ -171,7 +171,7 @@ console.log('Warnings:', data.data.warnings);
 import requests
 
 response = requests.post(
-    'https://api.cryptoguard.ai/v1/scan/transaction',
+    'https://api.chainguard.dev/v1/scan/transaction',
     headers={
         'Authorization': f'Bearer {api_key}',
         'Content-Type': 'application/json'

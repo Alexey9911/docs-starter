@@ -1,6 +1,6 @@
 ---
 title: "Get Risk Report"
-api: "GET https://api.cryptoguard.ai/v1/risk/report/{entity}"
+api: "GET https://api.chainguard.dev/v1/risk/report/{entity}"
 description: "Generate a comprehensive risk analysis report"
 icon: "book"
 ---
@@ -98,7 +98,7 @@ Full risk analysis report with detailed breakdown of all risk factors, historica
 <RequestExample>
 ```bash cURL
 curl --request GET \
-  --url 'https://api.cryptoguard.ai/v1/risk/report/0xdAC17F958D2ee523a2206206994597C13D831ec7?chain=ethereum' \
+  --url 'https://api.chainguard.dev/v1/risk/report/0xdAC17F958D2ee523a2206206994597C13D831ec7?chain=ethereum' \
   --header 'Authorization: Bearer cg_live_xxxxxxxxxxxxxxxx'
 ```
 
@@ -106,7 +106,7 @@ curl --request GET \
 const address = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
 
 const response = await fetch(
-  `https://api.cryptoguard.ai/v1/risk/report/${address}?chain=ethereum`,
+  `https://api.chainguard.dev/v1/risk/report/${address}?chain=ethereum`,
   {
     headers: { 'Authorization': `Bearer ${apiKey}` }
   }
@@ -123,7 +123,7 @@ import requests
 address = '0xdAC17F958D2ee523a2206206994597C13D831ec7'
 
 response = requests.get(
-    f'https://api.cryptoguard.ai/v1/risk/report/{address}',
+    f'https://api.chainguard.dev/v1/risk/report/{address}',
     headers={'Authorization': f'Bearer {api_key}'},
     params={'chain': 'ethereum'}
 )

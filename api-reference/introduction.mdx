@@ -1,15 +1,15 @@
 ---
 title: "API Introduction"
-description: "Getting started with the CryptoGuard Security API"
+description: "Getting started with the ChainGuard Security API"
 icon: "book-open"
 ---
 
-The CryptoGuard API provides programmatic access to our security intelligence and threat detection capabilities.
+The ChainGuard API provides programmatic access to our security intelligence and threat detection capabilities.
 
 ## Base URL
 
 ```
-https://api.cryptoguard.ai/v1
+https://api.chainguard.dev/v1
 ```
 
 All API requests must be made over HTTPS. HTTP requests will be rejected.
@@ -40,7 +40,7 @@ See [Authentication](/api-reference/authentication) for details on obtaining API
 
 ```bash
 curl --request POST \
-  --url https://api.cryptoguard.ai/v1/scan/url \
+  --url https://api.chainguard.dev/v1/scan/url \
   --header 'Authorization: Bearer cg_live_xxxxxxxx' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -139,13 +139,13 @@ Official SDKs are available:
 
 <CardGroup cols={3}>
   <Card title="JavaScript" icon="js" href="/sdk/javascript">
-    NPM: `@cryptoguard/sdk`
+    NPM: `@chainguard/sdk`
   </Card>
   <Card title="Python" icon="python" href="/sdk/python">
-    PyPI: `cryptoguard`
+    PyPI: `chainguard`
   </Card>
   <Card title="CLI" icon="terminal" href="/sdk/cli">
-    NPM: `cryptoguard-cli`
+    NPM: `chainguard-cli`
   </Card>
 </CardGroup>
 
@@ -176,6 +176,7 @@ Official SDKs are available:
 ## Support
 
 - **Documentation**: You're here!
-- **Status Page**: [status.cryptoguard.ai](https://status.cryptoguard.ai)
-- **Discord**: [discord.gg/chaingpt](https://discord.gg/chaingpt)
-- **Email**: api-support@chaingpt.org
+- **Site**: [chainguard.dev](https://chainguard.dev)
+- **Telegram**: [t.me/chainguard](https://t.me/chainguard)
+- **X**: [x.com/chainguard](https://x.com/chainguard)
+- **Email**: api-support@chainguard.dev

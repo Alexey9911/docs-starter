@@ -5,12 +5,12 @@ openapi: 'WEBHOOK /monitors/webhook'
 icon: 'bell'
 ---
 
-When a monitor changes state or crosses a risk threshold, CryptoGuard sends a signed webhook request to your endpoint.
+When a monitor changes state or crosses a risk threshold, ChainGuard sends a signed webhook request to your endpoint.
 
 ## What you receive
 
-- `X-Cryptoguard-Signature`: HMAC-SHA256 signature for verification.
-- `X-Cryptoguard-Event`: Event type such as `entity.risk_changed`.
+- `X-ChainGuard-Signature`: HMAC-SHA256 signature for verification.
+- `X-ChainGuard-Event`: Event type such as `entity.risk_changed`.
 - JSON payload that includes the entity, risk delta, and context.
 
 ## Example payload
@@ -42,10 +42,10 @@ function verifySignature(payload: string, signature: string, secret: string): bo
 }
 
 try {
-  const signature = request.headers['x-cryptoguard-signature'] as string;
+  const signature = request.headers['x-ChainGuard-signature'] as string;
   const rawBody = request.rawBody as string;
 
-  if (!verifySignature(rawBody, signature, process.env.CRYPTOGUARD_WEBHOOK_SECRET ?? '')) {
+  if (!verifySignature(rawBody, signature, process.env.CHAINGUARD_WEBHOOK_SECRET ?? '')) {
     throw new Error('Invalid signature');
   }
 
@@ -60,7 +60,7 @@ try {
 
 - Return `2xx` within 5 seconds.
 - Do not parse JSON after timeouts.
-- Retry logic is handled by CryptoGuard.
+- Retry logic is handled by ChainGuard.
 
 ## Next steps
 

@@ -1,15 +1,15 @@
 ---
 title: "Python SDK"
-description: "Official Python SDK for CryptoGuard API"
+description: "Official Python SDK for ChainGuard API"
 icon: "python"
 ---
 
-The official Python SDK provides synchronous and async access to the CryptoGuard API.
+The official Python SDK provides synchronous and async access to the ChainGuard API.
 
 ## Installation
 
 ```bash
-pip install cryptoguard
+pip install chainguard
 ```
 
 **Requirements:** Python 3.8+
@@ -19,9 +19,9 @@ pip install cryptoguard
 ## Quick Start
 
 ```python
-from cryptoguard import CryptoGuard
+from chainguard import ChainGuard
 
-guard = CryptoGuard(api_key="cg_live_xxxxxxxx")
+guard = ChainGuard(api_key="cg_live_xxxxxxxx")
 
 # Scan a URL
 result = guard.scan.url("https://example.com")
@@ -41,10 +41,10 @@ print(f"Is Honeypot: {contract.is_honeypot}")
 
 ```python
 import asyncio
-from cryptoguard import AsyncCryptoGuard
+from chainguard import AsyncChainGuard
 
 async def main():
-    guard = AsyncCryptoGuard(api_key="cg_live_xxxxxxxx")
+    guard = AsyncChainGuard(api_key="cg_live_xxxxxxxx")
     
     # Concurrent scanning
     results = await asyncio.gather(
@@ -64,11 +64,11 @@ asyncio.run(main())
 ## Configuration
 
 ```python
-from cryptoguard import CryptoGuard
+from chainguard import ChainGuard
 
-guard = CryptoGuard(
+guard = ChainGuard(
     api_key="cg_live_xxxxxxxx",
-    base_url="https://api.cryptoguard.ai",  # Optional
+    base_url="https://api.chainguard.dev",  # Optional
     timeout=30,                              # Seconds
     retries=3,                               # Retry attempts
 )
@@ -77,12 +77,12 @@ guard = CryptoGuard(
 ### Environment Variables
 
 ```bash
-export CRYPTOGUARD_API_KEY=cg_live_xxxxxxxx
+export CHAINGUARD_API_KEY=cg_live_xxxxxxxx
 ```
 
 ```python
 # Auto-loads from environment
-guard = CryptoGuard()
+guard = ChainGuard()
 ```
 
 ---
@@ -175,15 +175,15 @@ print(report.recommendations)
 ## Error Handling
 
 ```python
-from cryptoguard import (
-    CryptoGuard,
+from chainguard import (
+    ChainGuard,
     APIError,
     RateLimitError,
     ValidationError,
     AuthenticationError
 )
 
-guard = CryptoGuard(api_key="cg_live_...")
+guard = ChainGuard(api_key="cg_live_...")
 
 try:
     result = guard.scan.url("https://example.com")
@@ -221,7 +221,7 @@ for url, result in zip(urls, results):
 All responses are typed data classes:
 
 ```python
-from cryptoguard.types import (
+from chainguard.types import (
     UrlScanResult,
     ContractScanResult,
     WalletScanResult,
@@ -269,10 +269,10 @@ import logging
 
 # Enable debug logging
 logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger("cryptoguard")
+logger = logging.getLogger("ChainGuard")
 logger.setLevel(logging.DEBUG)
 
-guard = CryptoGuard(api_key="...")
+guard = ChainGuard(api_key="...")
 ```
 
 ---
@@ -280,9 +280,9 @@ guard = CryptoGuard(api_key="...")
 ## Context Manager
 
 ```python
-from cryptoguard import CryptoGuard
+from chainguard import ChainGuard
 
-with CryptoGuard(api_key="...") as guard:
+with ChainGuard(api_key="...") as guard:
     result = guard.scan.url("https://example.com")
     print(result.risk_score)
 # Connection cleaned up automatically

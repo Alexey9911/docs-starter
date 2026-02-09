@@ -8,11 +8,11 @@ The Transaction Analyzer provides human-readable explanations of complex blockch
 
 ## How It Works
 
-When you initiate a transaction, CryptoGuard intercepts and analyzes:
+When you initiate a transaction, ChainGuard intercepts and analyzes:
 
 <Steps>
   <Step title="Transaction Interception">
-    CryptoGuard detects the pending transaction from your wallet (MetaMask, WalletConnect, etc.).
+    ChainGuard detects the pending transaction from your wallet (MetaMask, WalletConnect, etc.).
   </Step>
   
   <Step title="Simulation">
@@ -20,7 +20,7 @@ When you initiate a transaction, CryptoGuard intercepts and analyzes:
   </Step>
   
   <Step title="AI Analysis">
-    ChainGPT's AI model generates a natural language explanation.
+    ChainGuard's AI model generates a natural language explanation.
   </Step>
   
   <Step title="Risk Assessment">
@@ -80,7 +80,7 @@ interface TransactionAnalysis {
 
 ## Approval Detection
 
-CryptoGuard pays special attention to token approval transactions:
+ChainGuard pays special attention to token approval transactions:
 
 ### Unlimited Approvals
 
@@ -101,7 +101,7 @@ interface ApprovalAnalysis {
 ```
 
 <Warning>
-  Unlimited approvals (`type(uint256).max`) give the spender contract full access to your tokens. CryptoGuard flags these as high risk and recommends setting specific limits.
+  Unlimited approvals (`type(uint256).max`) give the spender contract full access to your tokens. ChainGuard flags these as high risk and recommends setting specific limits.
 </Warning>
 
 ### Approval Risk Levels
@@ -158,7 +158,7 @@ const changes: BalanceChange[] = [
 
 ## Common Transaction Types
 
-CryptoGuard recognizes and explains common DeFi operations:
+ChainGuard recognizes and explains common DeFi operations:
 
 <AccordionGroup>
   <Accordion title="Token Swap">
@@ -217,9 +217,9 @@ CryptoGuard recognizes and explains common DeFi operations:
 Integrate transaction analysis into your dApp:
 
 ```typescript
-import { CryptoGuard } from '@cryptoguard/sdk';
+import { ChainGuard } from '@chainguard/sdk';
 
-const guard = new CryptoGuard({ apiKey: 'your_api_key' });
+const guard = new ChainGuard({ apiKey: 'your_api_key' });
 
 // Analyze a pending transaction
 const analysis = await guard.transaction.analyze({

@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "CryptoGuard",
+  "name": "ChainGuard",
   "colors": {
     "primary": "#22C978",
     "light": "#6FE3FF",
@@ -12,49 +12,47 @@
     "default": "dark"
   },
   "backgroundImage": "/images/bg-black.svg",
+  "styles": [
+    "/styles.css"
+  ],
   "modeToggle": {
     "default": "dark",
     "isHidden": true
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/logo_black.png",
+    "dark": "/images/logo_white.png"
   },
   "navbar": {
     "links": [
       {
-        "label": "Blog",
-        "href": "https://cryptoguard.ai/blog"
+        "label": "Site",
+        "href": "https://chainguard.dev"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Install Extension",
-      "href": "https://chrome.google.com/webstore/detail/cryptoguard"
+      "href": "https://chrome.google.com/webstore/detail/chainguard"
     }
   },
   "navigation": {
     "global": {
       "anchors": [
         {
-          "anchor": "ChainGPT",
+          "anchor": "Site",
           "icon": "link",
-          "href": "https://www.chaingpt.org"
+          "href": "https://chainguard.dev"
         },
         {
-          "anchor": "Twitter",
+          "anchor": "X",
           "icon": "x-twitter",
-          "href": "https://x.com/CryptoGuardAI"
-        },
-        {
-          "anchor": "Discord",
-          "icon": "discord",
-          "href": "https://discord.gg/chaingpt"
+          "href": "https://x.com/chainguard"
         },
         {
           "anchor": "Telegram",
           "icon": "telegram",
-          "href": "https://t.me/chaingpt"
+          "href": "https://t.me/chainguard"
         }
       ]
     },
@@ -157,12 +155,8 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/CryptoGuardAI",
-      "github": "https://github.com/chaingpt",
-      "discord": "https://discord.gg/chaingpt",
-      "telegram": "https://t.me/chaingpt",
-      "linkedin": "https://linkedin.com/company/chaingpt",
-      "youtube": "https://youtube.com/@chaingpt"
+      "x": "https://x.com/chainguard",
+      "telegram": "https://t.me/chainguard"
     }
   }
 }
