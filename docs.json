@@ -1,87 +1,15 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "CryptoGuard",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#00D9A6",
+    "light": "#00F0B5",
+    "dark": "#00A67E"
   },
   "favicon": "/favicon.svg",
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Getting started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+  "appearance": {
+    "default": "dark"
   },
   "logo": {
     "light": "/logo/light.svg",
@@ -90,33 +18,156 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Blog",
+        "href": "https://cryptoguard.ai/blog"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Install Extension",
+      "href": "https://chrome.google.com/webstore/detail/cryptoguard"
     }
   },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+  "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "ChainGPT",
+          "icon": "link",
+          "href": "https://www.chaingpt.org"
+        },
+        {
+          "anchor": "Twitter",
+          "icon": "x-twitter",
+          "href": "https://x.com/CryptoGuardAI"
+        },
+        {
+          "anchor": "Discord",
+          "icon": "discord",
+          "href": "https://discord.gg/chaingpt"
+        },
+        {
+          "anchor": "Telegram",
+          "icon": "telegram",
+          "href": "https://t.me/chaingpt"
+        }
+      ]
+    },
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "pages": [
+              "index",
+              "getting-started/quickstart",
+              "getting-started/installation"
+            ]
+          },
+          {
+            "group": "Features",
+            "icon": "shield",
+            "pages": [
+              "features/anti-phishing",
+              "features/malware-detection",
+              "features/risk-scoring",
+              "features/transaction-analyzer",
+              "features/wallet-security"
+            ]
+          },
+          {
+            "group": "Architecture",
+            "icon": "microchip",
+            "pages": [
+              "architecture/overview",
+              "architecture/ai-engine",
+              "architecture/data-providers"
+            ]
+          },
+          {
+            "group": "Security",
+            "icon": "lock",
+            "pages": [
+              "security/threat-detection",
+              "security/privacy"
+            ]
+          },
+          {
+            "group": "Resources",
+            "icon": "book",
+            "pages": [
+              "about/faq",
+              "about/team",
+              "about/roadmap"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "icon": "book-open",
+            "pages": [
+              "api-reference/introduction",
+              "api-reference/authentication",
+              "api-reference/errors"
+            ]
+          },
+          {
+            "group": "Scan Endpoints",
+            "icon": "magnifying-glass",
+            "pages": [
+              "api-reference/scan/url",
+              "api-reference/scan/contract",
+              "api-reference/scan/wallet",
+              "api-reference/scan/transaction"
+            ]
+          },
+          {
+            "group": "Risk Analysis",
+            "icon": "chart-line",
+            "pages": [
+              "api-reference/risk/score",
+              "api-reference/risk/report"
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "icon": "bell",
+            "pages": [
+              "api-reference/webhooks/events"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "SDK",
+        "groups": [
+          {
+            "group": "SDK Reference",
+            "icon": "code",
+            "pages": [
+              "sdk/javascript",
+              "sdk/python",
+              "sdk/cli"
+            ]
+          }
+        ]
+      }
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/CryptoGuardAI",
+      "github": "https://github.com/chaingpt",
+      "discord": "https://discord.gg/chaingpt",
+      "telegram": "https://t.me/chaingpt",
+      "linkedin": "https://linkedin.com/company/chaingpt",
+      "youtube": "https://youtube.com/@chaingpt"
     }
   }
 }
