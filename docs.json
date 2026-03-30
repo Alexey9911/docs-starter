@@ -47,7 +47,7 @@
         {
           "anchor": "X",
           "icon": "x-twitter",
-          "href": "https://x.com/ChainGuardDFI"
+          "href": "https://x.com/ChainGuardDefi"
         },
         {
           "anchor": "Telegram",
@@ -155,7 +155,7 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/ChainGuardDFI",
+      "x": "https://x.com/ChainGuardDefi",
       "telegram": "https://t.me/chainguardai_bot"
     }
   }
